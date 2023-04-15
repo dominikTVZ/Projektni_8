@@ -11,7 +11,6 @@ def ispis_prodaje(prodaja):
     print(f"\tGodina: {prodaja['datum'].year}")
     print('-' * 20)
 
-def ispis_svih_prodaja(prodaja):
-    print("Popis svih prodaja")
+def ispis_svih_prodaja(prodaje):
     for prodaja in prodaje:
         ispis_prodaje(prodaja)
