@@ -1,5 +1,5 @@
 from datetime import date
-def unos_pozitivnig_cijelog_broja(poruka):
+def unos_pozitivnog_cijelog_broja(poruka):
     while True:
         try:
             broj = int(input(poruka))

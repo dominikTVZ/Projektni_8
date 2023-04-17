@@ -26,7 +26,7 @@ while running:
     elif akcija == 2:
         kategorije.append(unos_kategorije(len(kategorije)+1))
     elif akcija == 3:
-        prodaje.append(unos_prodaje(korisnici, kategorije, len(prodaje) + 1))
+        prodaje.append(unos_prodaje(korisnici, kategorije, len(prodaje)+1))
     elif akcija == 4:
         ispis_svih_korisnika(korisnici)
     elif akcija == 5:

@@ -10,3 +10,4 @@ def ispis_svih_kategorija(kategorije):
             ispis_artikla(artikl)
 
 
+
