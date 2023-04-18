@@ -35,3 +35,4 @@ while running:
         ispis_svih_prodaja(prodaje)
     elif akcija == 7:
         running = False
+
