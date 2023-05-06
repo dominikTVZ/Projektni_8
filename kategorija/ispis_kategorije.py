@@ -5,9 +5,13 @@ def get_kategorija(redni_broj, kategorija):
 
 def ispis_svih_kategorija(kategorije):
     for kategorija in kategorije:
-        print(f"{kategorija.naziv}")
+        kategorija.ispis()
+
+
+
+        """print(f"{kategorija.naziv}")
         for artikl in kategorija.artikli:
             artikl.ispis()
-
+"""
 
 
