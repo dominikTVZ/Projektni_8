@@ -1,5 +1,5 @@
 class Adresa:
-    def __init__(self, ulica, kucni_broj, grad):
+    def __init__(self, ulica, kucni_broj, grad, prebivaliste):
         self.__ulica = ulica
         self.__kucni_broj = kucni_broj
         self.__grad = grad

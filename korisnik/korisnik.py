@@ -40,3 +40,4 @@ class Korisnik:
         print(f"\t ulica: {self.adresa.ulica}")
         print(f"\tKucni broj: {self.adresa.kucni_broj}")
         print(f"\tGrad: {self.adresa.grad}")
+        print(f"\t Mjesto prebivalista: {self.adresa.prebivaliste.mjesto}")
