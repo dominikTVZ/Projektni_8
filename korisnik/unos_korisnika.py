@@ -1,21 +1,30 @@
-from utilities import unos_pozitivnog_cijelog_broja
-from .korisnik import Korisnik
-from .adresa import Adresa
+from utilities import unos_pozitivnog_cijelog_broja, unos_intervala
+from .poslovni_korisnik import PoslovniKorisnik
+from .privatni_korisnik import PrivatniKorisnik
+
+
 
 def unos_korisnika(redni_broj):
 
-    ime = input(f"Unesite ime {redni_broj}. korisnika: ").title()
-    prezime = input(f"Unesite prezime {redni_broj}. korisnika: ").title()
+
     telefon = unos_pozitivnog_cijelog_broja(f"Unesite telefon {redni_broj}. korisnika: ")
     email = input(f"Unesite email {redni_broj}. korisnika: ").strip()
-    ulica = input(f"Unesite ulicu {redni_broj}. korisnika: ")
-    kucni_broj = int(input(f"Unesite kucni broj {redni_broj}. korisnika: "))
-    grad = input(f"Unesite grad {redni_broj}. korisnika: ")
 
+    print("Odaberite tip korisnika: ")
+    print('\t1. Poslovni korisnik')
+    print('\t2. Privatni korisnik')
+    tip_korisnika = unos_intervala(1, 2)
 
+    if tip_korisnika == 1:
+        naziv = input(f"Unesite naziv {redni_broj}. korisnika: ").capitalize()
+        web = input(f"Unesite web {redni_broj}. korisnika: ")
 
+        return PoslovniKorisnik(naziv, web, telefon, email)
 
-    adresa = Adresa(ulica, kucni_broj, grad)
+    elif tip_korisnika == 2:
+        ime = input(f"Unesite ime {redni_broj}. korisnika: ").capitalize()
+        prezime = input(f"Unesite prezime {redni_broj}. korisnika: ").capitalize()
 
-    return Korisnik(ime, prezime, email, telefon, adresa)
+        return PrivatniKorisnik(telefon, email, ime, prezime)
+
 
