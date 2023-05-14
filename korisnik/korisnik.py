@@ -6,8 +6,6 @@ class Korisnik(ABC):
         self._telefon = telefon
 
 
-
-
     @property
     def email(self):
         return self._email
