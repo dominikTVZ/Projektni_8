@@ -1,8 +1,9 @@
 from PyQt5 import QtWidgets, QtGui, QtCore
 import sys
-from enumeratori import TipKorisnika
 
-from utilities import unos_intervala
+from enumeratori import TipKorisnika
+from korisnik import PoslovniKorisnik, PrivatniKorisnik
+from utilities import provjera_korisnickog_unosa
 
 korisnici = []
 kategorije = []
@@ -34,7 +35,7 @@ class Window(QtWidgets.QMainWindow):
         self.label_telefon = QtWidgets.QLabel(self)
         self.label_telefon.setFont(self.font)
         self.label_telefon.setText('Telefon')
-        self.lanel_telefon.move(50, offset*2)
+        self.label_telefon.move(50, offset*2)
 
     #Input Telefon
 
@@ -46,7 +47,7 @@ class Window(QtWidgets.QMainWindow):
         self.label_email = QtWidgets.QLabel(self)
         self.label_email.setFont(self.font)
         self.label_email.setText('Email')
-        self.lanel_email.move(50, offset * 3)
+        self.label_email.move(50, offset * 3)
 
     # Input Email
 
@@ -58,7 +59,7 @@ class Window(QtWidgets.QMainWindow):
         self.label_ime = QtWidgets.QLabel(self)
         self.label_ime.setFont(self.font)
         self.label_ime.setText('Ime')
-        self.lanel_ime.move(50, offset * 4)
+        self.label_ime.move(50, offset * 4)
 
     # Input Ime
 
@@ -116,36 +117,60 @@ class Window(QtWidgets.QMainWindow):
         self.unos_korisnika_button = QtWidgets.QPushButton(self)
         self.unos_korisnika_button.setText('Unesi studenta')
         self.unos_korisnika_button.setGeometry(QtCore.QRect(100, offset * 7, 150, 30))
-        self.unos_korisnika_button.clicked.connect(self.unos_studenta)
+        self.unos_korisnika_button.clicked.connect(self.unos_korisnika)
 
     def on_combobox_changed(self):
         if self.tip_korisnika.currentText() == TipKorisnika.PRIVATNI.value:
             self.label_naziv.hide()
             self.label_web.hide()
+            self.text_naziv.hide()
+            self.text_web.hide()
             self.label_ime.show()
+            self.label_prezime.show()
+            self.text_ime.show()
             self.text_prezime.show()
         elif self.tip_korisnika.currentText() == TipKorisnika.POSLOVNI.value:
+            self.label_ime.hide()
+            self.label_prezime.hide()
+            self.text_ime.hide()
+            self.text_prezime.hide()
             self.label_naziv.show()
             self.label_web.show()
-            self.label_ime.hide()
-            self.text_prezime.hide()
-    def unos_studenta(self):
-        error = provjera_informacija(self.text_ime.text(), self.text_prezime.text())
+            self.text_naziv.show()
+            self.text_web.show()
+
+    def unos_korisnika(self):
+        if self.tip_korisnika.currentText() == TipKorisnika.PRIVATNI.value:
+            error = provjera_korisnickog_unosa(self.text_telefon.text(), self.text_email.text(), self.text_ime.text(),
+                                               self.text_prezime.text())
+
+        elif self.tip_korisnika.currentText() == TipKorisnika.POSLOVNI.value:
+            error = provjera_korisnickog_unosa(self.text_telefon.text(), self.text_email.text(), self.text_naziv.text(),
+                                               self.text_web.text())
 
         if error is None:
-            if self.tip_studenta.currentText() == TipKorisnika.PRIVATNI.value:
-                korisnik.append(PrivatniKorisnik(self.text_ime.text(), self.text_prezime.text(),
-                                               ispiti[self.text_ispit.currentIndex()], self.text_broj_prijava.text()))
-            elif self.tip_studenta.currentText() == TipStudenta.REDOVNI.value:
-                studenti.append(VanredniStudent(self.text_ime.text(), self.text_prezime.text(),
-                                                ispiti[self.text_ispit.currentIndex()]))
+            if self.tip_korisnika.currentText() == TipKorisnika.PRIVATNI.value:
+                korisnici.append(PrivatniKorisnik(self.text_ime.text(), self.text_prezime.text(),
+                                                  self.text_telefon.text(), self.text_email.text()))
+
+            elif self.tip_korisnika.currentText() == TipKorisnika.POSLOVNI.value:
+                korisnici.append(PoslovniKorisnik(self.text_naziv.text(), self.text_web.text(),
+                                                  self.text_telefon.text(), self.text_email.text()))
 
             self.text_ime.setText('')
             self.text_prezime.setText('')
-            self.text_broj_prijava.setText('')
+            self.text_naziv.setText('')
+            self.text_web.setText('')
+            self.text_telefon.setText('')
+            self.text_email.setText('')
             self.label_error.setText('')
+
+            korisnik = korisnici[len(korisnici) - 1]
+            korisnik.ispis()
+
         else:
             self.label_error.setText(error)
+
 app = QtWidgets.QApplication(sys.argv)
 win = Window()
 win.show()

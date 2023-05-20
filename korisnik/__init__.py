@@ -4,4 +4,3 @@ from .korisnik import Korisnik
 from .poslovni_korisnik import PoslovniKorisnik
 from .privatni_korisnik import PrivatniKorisnik
 
-

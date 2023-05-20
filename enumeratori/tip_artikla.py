@@ -1,5 +1,5 @@
 from enum import Enum
 
-class TipArtikla:
+class TipArtikla(Enum):
     AUTOMOBIL = 'Automobil'
     STAN = 'Stan'

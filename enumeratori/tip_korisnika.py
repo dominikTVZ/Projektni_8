@@ -1,5 +1,5 @@
 from enum import Enum
 
-class TipKorisnika:
+class TipKorisnika(Enum):
     PRIVATNI = 'Privatni'
     POSLOVNI = 'Poslovni'
