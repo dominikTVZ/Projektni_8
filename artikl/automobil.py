@@ -8,8 +8,10 @@ class Automobil(Artikl, Vozilo):
 
 
     def ispis(self):
-        print(f"\tInformacije o automobilu: ")
+        return f'{self.naslov}, {self.opis}, {self.cijena}, {self.snaga}'
+        """print(f"\tInformacije o automobilu: ")
         print(f"\tNaslov: {self.naslov}")
         print(f"\tOpis: {self.opis}")
         print(f"\tCijena: {self.cijena}")
         print(f"\tCijena osiguranja automobila: {self.cijena_osiguranja(self.snaga)}")
+        """

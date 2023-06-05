@@ -22,8 +22,9 @@ class PoslovniKorisnik(Korisnik):
         self.__web = web
 
     def ispis(self):
-        print('Informacije o poslovnom korisniku: ')
+        return f'{self.naziv} {self.web}, {self.email}, {self.telefon}'
+        """print('Informacije o poslovnom korisniku: ')
         print(f'\tNaziv: {self.naziv}')
         print(f'\tWeb: {self.web}')
         print(f'\tTelefon: {self.telefon}')
-        print(f'\tEmail: {self.email}')
+        print(f'\tEmail: {self.email}')"""

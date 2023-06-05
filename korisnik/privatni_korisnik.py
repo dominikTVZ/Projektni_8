@@ -22,7 +22,9 @@ class PrivatniKorisnik(Korisnik):
         self.__prezime = prezime
 
     def ispis(self):
-        print(f"Email: {self.email}")
+        return f'{self.ime} {self.prezime}, {self.email}, {self.telefon}'
+        """print(f"Email: {self.email}")
         print(f"Telefon: {self.telefon}")
         print(f"Ime: {self.ime}")
         print(f"Prezime: {self.prezime}")
+        """

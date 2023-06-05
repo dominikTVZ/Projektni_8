@@ -6,6 +6,8 @@ class Prodaja:
 
 
     def ispis(self):
+        return f'{self.korisnik.email}: {self.artikl.naslov}'
+        """
         self.korisnik.ispis()
         self.artikl.ispis()
         print("Datum isteka prodaje: ")
@@ -13,3 +15,4 @@ class Prodaja:
         print(f"\t Mjesec: {self.datum.month}")
         print(f"\t Godina: {self.datum.year}")
         print("-"*20)
+        """
